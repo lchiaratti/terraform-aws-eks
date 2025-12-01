@@ -7,7 +7,7 @@ resource "aws_subnet" "eks-subnet-public-1a" {
   tags = merge(
     local.tags,
     {
-      Name                        = "eks-subnet-public-1a",
+      Name                        = "${var.project_name}-subnet-public-1a",
       "kubernetes.io/ role / alb" = 1
     }
   )
@@ -22,9 +22,18 @@ resource "aws_subnet" "eks-subnet-public-1b" {
   tags = merge(
     local.tags,
     {
-      Name                        = "eks-subnet-public-1b",
+      Name                        = "${var.project_name}-subnet-public-1b",
       "kubernetes.io/ role / alb" = 1
     }
   )
 }
 
+resource "aws_route_table_association" "eks_rtb_assoc_1a" {
+  subnet_id      = aws_subnet.eks-subnet-public-1a.id
+  route_table_id = aws_route_table.eks_rt_public.id
+}
+
+resource "aws_route_table_association" "eks_rtb_assoc_1b" {
+  subnet_id      = aws_subnet.eks-subnet-public-1b.id
+  route_table_id = aws_route_table.eks_rt_public.id
+}
