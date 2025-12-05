@@ -5,10 +5,23 @@ module "eks_network" {
   tags         = local.tags
 }
 
-module "eks_module" {
+module "eks_cluster" {
   source           = "./modules/cluster"
   project_name     = var.project_name
   tags             = local.tags
+  cluster_name     = module.eks_cluster.cluster_name
   public_subnet_1a = module.eks_network.subnet_pub_1a
   public_subnet_1b = module.eks_network.subnet_pub_1b
 }
+
+
+module "eks_nodegroup" {
+  source            = "./modules/nodegroup"
+  project_name      = var.project_name
+  tags              = local.tags
+  cluster_name      = module.eks_cluster.cluster_name
+  private_subnet_1a = module.eks_network.subnet_priv_1a
+  private_subnet_1b = module.eks_network.subnet_priv_1b
+}
+
+
