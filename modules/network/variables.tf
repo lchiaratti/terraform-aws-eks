@@ -8,3 +8,8 @@ variable "project_name" {
   description = "Nome do Projeto"
 
 }
+
+variable "tags" {
+  type        = map(any)
+  description = "adicionar TAGs nos recursos"
+}

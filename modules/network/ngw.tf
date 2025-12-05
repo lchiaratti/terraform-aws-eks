@@ -2,7 +2,7 @@ resource "aws_eip" "eks-ngw-eip_1a" {
   domain = "vpc"
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
       Name = "${var.project_name}-eip-1a"
     }
@@ -13,7 +13,7 @@ resource "aws_eip" "eks-ngw-eip_1a" {
 resource "aws_eip" "eks-ngw-eip_1b" {
   domain = "vpc"
   tags = merge(
-    local.tags,
+    var.tags,
     {
       Name = "${var.project_name}-eip-1b"
     }
@@ -26,7 +26,7 @@ resource "aws_nat_gateway" "eks-ngw-1a" {
   subnet_id     = aws_subnet.eks-subnet-public-1a.id
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
       Name = "${var.project_name}-ngw-1a"
     }
@@ -39,7 +39,7 @@ resource "aws_nat_gateway" "eks-ngw-1b" {
   subnet_id     = aws_subnet.eks-subnet-public-1b.id
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
       Name = "${var.project_name}-ngw-1b"
     }
@@ -57,7 +57,7 @@ resource "aws_route_table" "eks_rt_private-1a" {
   }
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
       Name = "${var.project_name}-rtb-private-1a"
     }
@@ -75,7 +75,7 @@ resource "aws_route_table" "eks_rt_private-1b" {
   }
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
       Name = "${var.project_name}-rtb-private-1b"
     }
