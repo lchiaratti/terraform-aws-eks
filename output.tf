@@ -15,3 +15,10 @@ output "subnet_priv_1b" {
   value = module.eks_network.subnet_priv_1b
 }
 
+output "eks-vpc-config" {
+  value = module.eks_module.eks-vpc-config
+}
+
+output "oidc" {
+  value = module.eks_module.oidc
+}
