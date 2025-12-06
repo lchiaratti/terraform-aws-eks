@@ -22,3 +22,7 @@ output "oidc" {
 output "cluster_name" {
   value = module.eks_cluster.cluster_name
 }
+
+output "oidc-identity" {
+  value = module.eks_cluster.oidc
+}

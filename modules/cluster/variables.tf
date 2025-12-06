@@ -25,3 +25,4 @@ variable "cluster_name" {
   type        = string
   description = "nome do cluster"
 }
+
