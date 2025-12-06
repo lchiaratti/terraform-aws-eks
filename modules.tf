@@ -31,5 +31,6 @@ module "eks_alb_controller" {
   project_name  = var.project_name
   tags          = local.tags
   oidc-identity = module.eks_cluster.oidc-indentity
+  cluster_name  = module.eks_cluster.cluster_name
 }
 
