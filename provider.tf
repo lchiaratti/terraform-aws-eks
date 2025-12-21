@@ -13,15 +13,11 @@ terraform {
       version = "3.1.1"
     }
   }
-  backend "s3" {
-    bucket = "eks-tfstate-chiaratti"
-    key    = "dev/eks-dev.tfstate"
-    region = "us-east-1"
-  }
+
 }
 
 provider "aws" {
-  # Configuration options
+  region = var.region
 }
 
 
