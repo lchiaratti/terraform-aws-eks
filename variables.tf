@@ -14,7 +14,7 @@ variable "region" {
 }
 
 variable "tags" {
-  type        = map
+  type        = map(any)
   description = "TAGs que serão adicionadas em todos os recursos"
 }
 
