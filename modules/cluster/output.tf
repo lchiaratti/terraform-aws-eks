@@ -6,6 +6,10 @@ output "cluster_name" {
   value = aws_eks_cluster.eks-cluster.id
 }
 
+output "oidc-identity" {
+  value = aws_eks_cluster.eks-cluster.identity[0].oidc[0].issuer
+}
+
 output "oidc-indentity" {
   value = aws_eks_cluster.eks-cluster.identity[0].oidc[0].issuer
 }

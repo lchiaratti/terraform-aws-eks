@@ -1,3 +1,35 @@
+## Module: network
+
+Provisiona a rede base para o EKS em duas AZs.
+
+## Recursos principais
+- VPC com DNS habilitado.
+- 2 subnets públicas e 2 privadas.
+- Internet Gateway.
+- 2 NAT Gateways (um por AZ).
+- Rotas públicas e privadas + associações.
+
+## Inputs
+| Nome | Tipo | Default | Descrição |
+|------|------|---------|-----------|
+| `cidr_block` | `string` | n/a | CIDR da VPC |
+| `project_name` | `string` | n/a | Nome base dos recursos |
+| `tags` | `map(any)` | n/a | Tags comuns |
+
+## Outputs
+| Nome | Descrição |
+|------|-----------|
+| `subnet_pub_1a` | ID da subnet pública AZ-a |
+| `subnet_pub_1b` | ID da subnet pública AZ-b |
+| `subnet_priv_1a` | ID da subnet privada AZ-a |
+| `subnet_priv_1b` | ID da subnet privada AZ-b |
+
+## Notas
+- As rotas privadas usam `nat_gateway_id` para saída à internet via NAT.
+- Este módulo não cria NACLs customizadas; usa as padrão da VPC.
+
+## Referência Terraform (Gerado)
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -34,7 +66,6 @@ No modules.
 | [aws_subnet.eks-subnet-public-1a](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
 | [aws_subnet.eks-subnet-public-1b](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
 | [aws_vpc.eks_vpc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc) | resource |
-| [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 
 ## Inputs
 

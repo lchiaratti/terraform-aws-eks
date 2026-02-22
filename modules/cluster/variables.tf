@@ -9,20 +9,55 @@ variable "tags" {
   description = "adicionar TAGs nos recursos"
 }
 
-variable "public_subnet_1a" {
+variable "private_subnet_1a" {
   type        = string
-  description = "Subnet para o EKs cluster AZ 1a"
+  description = "Subnet privada para o EKs cluster AZ 1a"
 
 }
 
-variable "public_subnet_1b" {
+variable "private_subnet_1b" {
   type        = string
-  description = "Subnet para o EKs cluster AZ 1b"
+  description = "Subnet privada para o EKs cluster AZ 1b"
 
 }
 
-variable "cluster_name" {
+variable "cluster_version" {
   type        = string
-  description = "nome do cluster"
+  description = "Versao do Kubernetes para o cluster EKS"
 }
 
+variable "endpoint_private_access" {
+  type        = bool
+  description = "Habilita endpoint privado da API do EKS"
+  default     = true
+}
+
+variable "endpoint_public_access" {
+  type        = bool
+  description = "Habilita endpoint público da API do EKS"
+  default     = false
+}
+
+variable "endpoint_public_access_cidrs" {
+  type        = list(string)
+  description = "Lista de CIDRs autorizados no endpoint público da API do EKS"
+  default     = []
+}
+
+variable "enabled_cluster_log_types" {
+  type        = list(string)
+  description = "Tipos de logs de controle habilitados no EKS"
+  default     = []
+}
+
+variable "cluster_addons" {
+  type        = list(string)
+  description = "Lista de addons gerenciados do EKS"
+  default     = ["coredns", "kube-proxy", "vpc-cni"]
+}
+
+variable "cluster_addon_versions" {
+  type        = map(string)
+  description = "Versoes dos addons gerenciados do EKS por nome"
+  default     = {}
+}

@@ -18,3 +18,9 @@ variable "cluster_name" {
   type        = string
   description = "nome do cluster"
 }
+
+variable "alb_controller_chart_version" {
+  type        = string
+  description = "Versao do chart Helm do AWS Load Balancer Controller"
+  default     = "1.12.0"
+}
